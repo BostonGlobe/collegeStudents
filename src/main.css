@@ -73,8 +73,8 @@ body{
 	width: 90%;
 	padding: 10px;
 	background-color: rgba(0, 0, 0, 0.6);
-	font-family: BentonSans;
-	font-size: larger;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: large;
 }
 
 .dropbtn {
@@ -136,11 +136,9 @@ body{
 	opacity: 0.8;
 	height: 50%}
 
-
 .tick line {
 	fill: none;
 	stroke: #dddddd;
-	shape-rendering: crispEdges;
 }
 
 .tick text {
@@ -180,4 +178,7 @@ body{
 
 .highlight{
 	background-color: #0076D1;
+}
+.mainGraphic{
+	min-height: 800px;
 }
