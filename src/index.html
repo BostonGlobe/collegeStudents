@@ -19,7 +19,7 @@
         </style>
         
         <!-- UPDATE VERSION # IF YOU NEED TO REPUBLISH -->
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         <link rel='stylesheet' href='main.css?version=1' />
         
         <link rel='shortcut icon' href='https://www.bostonglobe.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/favicon.ico' />
@@ -36,23 +36,39 @@
             BEGIN: GRAPHIC CODE HERE
             ==========================
             -->
-            <p class="graphichead">Universities diversified, but black students are still rare.</p>
-            <p class='subtitle'> You're black. You're college-educated. You earn a good salary. Here are some places where you can live without standing out too much.<br/>
-                Below is national map highlighting the metro regions of Boston and 15 other major cities. The blue areas show the tracts where at least 15 percent of the population is black, at least 30 percent of them have a four-year college degree, and most of the black households there have an income at or above the region's average.<br/>
-            </p>
+            <!--<div class="hed">-->
+                <!--<div id="openText">-->
+                    <!--Boston's elite​ campuses reflect new levels of diversity, attracting students from all over the world. But take a closer look-->
+                    <!--The black students are ​- and always have been - ​hard to find.-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="hed">
+                <p class="graphichead">"Diversity" in college has less to do with black students than many would think</p>
+                <!--<p class='subtitle'>-->
+                </p>
+            </div>
 
-            <div id="container"></div>
-            <div class="textTrigger">
-                <div class="trigger" id="trigger1">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="plot" class="col-sm-12 col-md-6"></div>
+                    <div class="textTrigger col-sm-12 col-md-6">
+                        <div class="trigger col-xs-8" id="trigger0">
+                            <p class="info">Boston's elite​ campuses reflect new levels of diversity, attracting students from all over the world. But take a closer look -- <br/>
+                                The black students are ​- and always have been - ​hard to find.<br/>
+                                The black students increased from 5% to 8% in the past 20 years across <span class="stress">Boston metro area</span>.
+                            </p>
+                        </div>
+                        <div class="trigger col-xs-8" id="trigger1">
+                            <p class="info">In 1980 at <span class="stress">Boston University</span>, black Americans were 4 percent​ of the student body -- and it’s still the same </p>
+                        </div>
+                        <div class="trigger col-xs-8" id="trigger2">
+                            <p class="info">At <span class="stress">Harvard University</span>, they were 5 percent - and the latest data shows no change  </p>
 
-                    <p class="info">In 1980 at Boston University, black Americans were 4 percent​ of the student body -- and it’s still the same </p>
-                </div>
-                <div class="trigger" id="trigger2">
-                    <p class="info">At Harvard University, they were 5 percent - and the latest data shows no change  </p>
-
-                </div>
-                <div class="trigger" id="trigger3">
-                    <p class="info">At Northeastern University, the percentage of black Americans is virtually unchanged from 4 to 5 percent in more than three decades.</p>
+                        </div>
+                        <div class="trigger col-xs-8" id="trigger3">
+                            <p class="info">At <span class="stress">Northeastern University</span>, the percentage of black Americans is virtually unchanged from 4 to 5 percent in more than three decades.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

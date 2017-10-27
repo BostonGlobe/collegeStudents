@@ -3,16 +3,36 @@
     // global variables
     var screenWidth = window.innerWidth;
     console.log(screenWidth);
-    var axisData =['BLACK','INTERNATIONAL', 'WHITE','HISPANIC','ASIAN','OTHERS'];
+    var axisData =['WHITE', 'INTERNATIONAL', 'BLACK', 'HISPANIC','ASIAN','OTHERS'];
     var color = {
-        'WHITE': '#ddd',
+        'WHITE': '#edecef',
         'BLACK': '#3F98DC',
-        'INTERNATIONAL': '#F7D33F',
-        'HISPANIC': '#ddd',
-        'ASIAN': '#ddd',
-        'OTHERS':'#ddd'
+        'INTERNATIONAL': '#c6c6c7',
+        'HISPANIC': '#959496',
+        'ASIAN': '#6c6b6e',
+        'OTHERS':'#403f42'
     };
-    var th=2;
+    
+    
+    var allColors=[
+        '#010003',
+        '#403f42',
+        '#807f81',
+        '#BFBFC0',
+        '#E5E5E5',
+        '#F2F2F2',
+        '#F5C500',
+        '#F7D33F',
+        '#FAE27F',
+        '#FCF0BF',
+        '#0076D1',
+        '#3F98DC',
+        '#7FBAE8',
+        '#BFDCF3'
+    ];
+        
+        
+    var th=4;
     // called once on page load
     var init = function() {
 
@@ -29,26 +49,30 @@
     };
 
 // Set the dimensions and margins of the diagram
-    var margin = {top: 20, right: 50, bottom: 30, left: 20},
-        width =  (document.getElementById('container').clientWidth)  - margin.left - margin.right,
-        height = document.getElementById('container').clientHeight - margin.top - margin.bottom;
+    var margin = {top: 20, right: 20, bottom: 20, left: 20},
+        width =  (document.getElementById('plot').clientWidth)  - margin.left - margin.right,
+        height = document.getElementById('plot').clientHeight - margin.top - margin.bottom;
     var simulation;
     var dataCircles96=[];
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-    var svg = d3.select("#container").append("svg")
-        .attr("width", width + margin.right + margin.left)
-        .attr("height", height + margin.top + margin.bottom);
+    var svg = d3.select("#plot").append("svg")
+        .attr('transform','translate(0,0)')
+        .attr("width", width+margin.left+margin.right-30)
+        .attr("height", height+margin.top+margin.bottom);
 
     var axisYData = ['1996', '2015'];
     // graphic code
     var scaleY= d3.scaleBand()
         .domain(axisData)
-        .range([120, height]);
+        .range([0, height]);
     var scaleX= d3.scaleBand()
         .domain(axisYData)
-        .range([0, 2*width/3]);
+        .range([0, width]);
+    var scaleAll= d3.scaleBand()
+        .domain(axisData)
+        .range([4*height/9, 5*height/9]);
 
 
     d3.queue()
@@ -93,36 +117,65 @@
         var universityId=2;
 
 
-        d3.select('#container').classed('fixed', true);
-        ForceLayout(allCircleData, universityId);
+
+
+        var forceY0 =d3.forceY().y(function (d) {
+            return scaleAll(d.data[35].attr.toUpperCase());
+        }).strength(1);
+
+        d3.select('#plot').classed('fixed', true);
+        ForceLayout(allCircleData,0,forceY0, 35);
+
 
         //ScrollyTelling
         var controller = new ScrollMagic.Controller();
 
-        var sceneA = new ScrollMagic.Scene({ triggerElement:'#trigger1', offset: -(document.documentElement.clientHeight/th), triggerHook: 0 }) // All races
+        var sceneA = new ScrollMagic.Scene({ triggerElement:'#trigger0', offset:-100, triggerHook: 0 }) // All races
+            .on('start',function(){
+                d3.select('.categoryAxis').style('opacity', 0);
+                d3.select('.xAxis').selectAll('line').style('opacity', 0);
+                d3.selectAll(".stress").classed('highlight', false);
+                d3.select('#trigger0').select('.stress').classed('highlight', true);
+                universityId=35; //BU
+                var forceY0 =d3.forceY().y(function (d) {
+                    return scaleAll(d.data[universityId].attr.toUpperCase());
+                }).strength(1);
+
+                ForceLayout(allCircleData,0,forceY0, universityId);
+            });
+
+        var sceneB = new ScrollMagic.Scene({ triggerElement:'#trigger1', offset: -(document.documentElement.clientHeight/th), triggerHook: 0 }) // All races
             .on('start',function(){
                 universityId=0; //BU
-
-                ForceLayout(allCircleData, universityId);
+                d3.select('.categoryAxis').style('opacity', 1);
+                d3.select('.xAxis').selectAll('line').style('opacity', 0.2);
+                d3.selectAll(".stress").classed('highlight', false);
+                d3.select('#trigger1').select('.stress').classed('highlight', true);
+                ForceLayout(allCircleData,0,0, universityId);
             });
 
-        var sceneB = new ScrollMagic.Scene({ triggerElement:'#trigger2', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
+        var sceneC = new ScrollMagic.Scene({ triggerElement:'#trigger2', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
             .on('start',function(){
                 universityId=3; //Harvard
-                ForceLayout(allCircleData, universityId);
+                d3.selectAll(".stress").classed('highlight', false);
+                d3.select("#trigger2").select('.stress').classed('highlight', true);
+                ForceLayout(allCircleData,0,0, universityId);
+                d3.select('#myDropdown').classed('show', false);
             });
 
-        var sceneC = new ScrollMagic.Scene({ triggerElement:'#trigger3', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
+        var sceneD = new ScrollMagic.Scene({ triggerElement:'#trigger3', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
             .on('start',function(){
+                d3.selectAll(".stress").classed('highlight', false);
+                d3.select("#trigger3").select('.stress').classed('highlight', true);
                 universityId=2;//NEU
-                ForceLayout(allCircleData, universityId);
+                ForceLayout(allCircleData,0,0, universityId);
             });
         // var sceneD = new ScrollMagic.Scene({ triggerElement:'#trigger4', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
         //     .on('start',function(){
         //         universityId=7; //MIT
         //         ForceLayout(allCircleData, universityId);
         //     });
-        controller.addScene([sceneA, sceneB, sceneC]);
+        controller.addScene([sceneA, sceneB, sceneC, sceneD]);
 
 
         var btn = d3.select('#trigger3')
@@ -164,8 +217,10 @@
                 return d.name;
             })
             .on('click', function (d) {
+                document.getElementById("myDropdown").classList.toggle("show");
+                d3.selectAll(".stress").classed('highlight', false);
                 universityId=data96.indexOf(d); //MIT
-                ForceLayout(allCircleData, universityId);
+                ForceLayout(allCircleData,0,0, universityId);
             });
 
         d3.select('.dropbtn').on('mouseover', myFunction);
@@ -236,30 +291,34 @@
 
 
 
-    function ForceLayout(data, uId) {
+    function ForceLayout(data, forceX, forceY, uId) {
         drawChart(data);
 
-        var forceX= d3.forceX().x(function (d) {
-            return scaleX(d.year);
-        }).strength(0.1);
+        if(forceX==0){
+            forceX= d3.forceX().x(function (d) {
+                return scaleX(d.year);
+            }).strength(0.8);
+        }
 
+        if(forceY==0){
+            forceY = d3.forceY().y(function (d) {
+                return scaleY(d.data[uId].attr.toUpperCase());
+            }).strength(1.3);
+        }
 
-        var forceY = d3.forceY().y(function (d) {
-            return scaleY(d.data[uId].attr.toUpperCase());
-        }).strength(1.5);
 
         //var collide = d3.forceCollide(5)
 
         simulation
-            .force("collide",d3.forceCollide(5).radius(6).strength(1.5) )
+            .force("collide",d3.forceCollide(5).radius(6).strength(1.2) )
             .force("charge", d3.forceManyBody().strength(0.5))
+            .restart()
+            .alpha(0.06)
             .force('y', forceY)
             .force('x', forceX)
-            // .alphaTarget(0.3)
-            // .restart()
-            .restart()
-            .alphaTarget(0.05)
             .on('tick', ticked);
+
+        //simulation.alphaTarget(0);
         //return simulation;
 
         function ticked() {
@@ -282,7 +341,8 @@
 
         // Enter any new modes at the parent's previous position.
         var nodeEnter = node.enter().append('g')
-            .attr('class', 'node');
+            .attr('class', 'node')
+            .attr('transform','translate('+ width/4+','+3*margin.top+')');
 
         var circles = nodeEnter.merge(node).selectAll('.circleNode')
             .data(data) //500 objects
@@ -293,8 +353,7 @@
             .attr('class','circleNode');
 
         d3.selectAll('.circleNode')
-            .attr('r', 5)
-            .attr('transform','translate(230,0)');
+            .attr('r', 5);
 
         circles.exit().remove();
 
@@ -316,7 +375,7 @@
 
     }
     function dragStarted(d) {
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        if (!d3.event.active) simulation.alphaTarget(0.2).restart();
         d.fx = d.x;
         d.fy = d.y;
     }
@@ -371,17 +430,22 @@
             .tickSize(-width);
         svg.append('g')
             .attr('class','categoryAxis')
-            .attr('transform','translate(100,-40)')
+            .attr('transform','translate('+margin.left+','+ margin.top+')')
             .style('stroke-dasharray', ('6, 3'))
             .call(axisCategory);
 
         var axisx = d3.axisTop()
             .scale(scaleX)
-            .tickSize(-width);
+            .tickSize(-height);
         svg.append('g')
             .attr('class','xAxis')
-            .attr('transform','translate(120,50)')
+            .attr('transform','translate(0,'+margin.top+')')
             .call(axisx);
+
+        d3.selectAll('.categoryAxis').selectAll('text').attr('transform','translate(80, -10)');
+
+        d3.select('.categoryAxis').style('opacity', 0);
+        d3.select('.xAxis').selectAll('line').style('opacity', 0);
     }
     function selectedSchool(str) {
         var selectedSchool=false;
@@ -392,6 +456,11 @@
         }
         return selectedSchool;
     }
+
+
+
+
+
 
 
 
