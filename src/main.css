@@ -55,7 +55,7 @@ body{
 	opacity: 0;
 }
 
-.categoryAxis .tick {
+.categoryAxis .tick line{
 	opacity: .3;
 }
 .textTrigger{
