@@ -1,0 +1,53 @@
+name,white,black,hispanic,asian,international,others
+Andover Newton Theological School,0.92,0.05,0.02,0,0.02,0.02
+Babson College,0.93,0.01,0.01,0,0.05,0.05
+Benjamin Franklin Institute of Technology,0.85,0.05,0.01,0.02,0.06,0.06
+Bentley University,0.98,0.01,0,0.01,0.01,0.01
+Berklee College of Music,0.71,0.1,0.02,0.01,0.16,0.16
+Boston College,0.92,0.03,0.02,0.02,0.01,0.01
+Boston University,0.84,0.04,0.02,0.02,0.09,0.09
+Brandeis University,0.84,0.04,0.03,0.02,0.07,0.07
+Bridgewater State University,0.97,0.01,0,0.01,0,0.01
+Curry College,0.95,0.04,0,0,0.01,0.01
+Dean College,0.96,0.04,0,0,0,0
+Eastern Nazarene College,0.91,0.04,0.01,0.01,0.03,0.03
+Emerson College,0.91,0.05,0.02,0,0.02,0.03
+Emmanuel College,0.92,0.03,0.02,0,0.03,0.03
+Endicott College,0.96,0,0,0,0.04,0.04
+Episcopal Divinity School,0.94,0.03,0.01,0.01,0.02,0.02
+Fisher College,0.89,0.07,0.01,0.01,0.01,0.02
+Framingham State University,0.96,0.01,0.01,0.01,0,0.01
+Gordon College,0.98,0.01,0,0,0.01,0.01
+Gordon-Conwell Theological Seminary,0.91,0.02,0.01,0.02,0.04,0.04
+Harvard University,0.79,0.05,0.03,0.03,0.1,0.1
+Hebrew College,0.82,0,0,0,0.18,0.18
+Hellenic College-Holy Cross Greek Orthodox School of Theology,0.73,0,0,0,0.26,0.26
+Hult International Business School,0,0.03,0.01,0,0.96,0.96
+Laboure College,0.96,0.03,0,0,0,0
+Lasell College,0.97,0.01,0.01,0,0.01,0.01
+Lesley University,0.93,0.03,0.02,0.01,0.01,0.01
+Massachusetts College of Art and Design,0.94,0.02,0.01,0.02,0.01,0.01
+Massachusetts Institute of Technology,0.72,0.04,0.02,0.03,0.2,0.2
+MCPHS University,0.82,0.01,0.03,0.02,0.12,0.13
+Merrimack College,0.99,0,0,0,0,0
+Mount Ida College,0.81,0.13,0.02,0,0.04,0.04
+New England College of Optometry,0.96,0.01,0.01,0.02,0.01,0.01
+New England Law-Boston,0.97,0.02,0.01,0,0,0
+Newbury College,0.78,0.14,0.05,0,0.03,0.03
+Northeastern University,0.91,0.04,0.01,0.02,0.03,0.03
+Pine Manor College,0.76,0.01,0.03,0.01,0.2,0.2
+Pope St John XXIII National Seminary,1,0,0,0,0,0
+Regis College,0.91,0.02,0.04,0.01,0.02,0.02
+Saint John's Seminary,0.97,0.01,0.02,0,0,0
+Salem State University,0.97,0.02,0,0,0,0.01
+School of the Museum of Fine Arts at Tufts University,0.92,0.01,0.01,0.02,0.04,0.04
+Simmons College,0.9,0.04,0.01,0.02,0.02,0.02
+Suffolk University,0.96,0.02,0.01,0.01,0,0.01
+The New England Conservatory of Music,0.85,0.04,0,0.02,0.09,0.09
+Tufts University,0.87,0.05,0.01,0.03,0.04,0.04
+University of Massachusetts-Boston,0.83,0.09,0.03,0.01,0.03,0.04
+University of Massachusetts-Lowell,0.95,0.01,0.01,0.01,0.02,0.03
+Wellesley College,0.8,0.07,0.03,0.06,0.05,0.05
+Wentworth Institute of Technology,0.83,0.04,0.01,0.02,0.09,0.1
+Wheelock College,0.91,0.04,0.02,0.01,0.02,0.02
+average,0.88,0.03,0.01,0.01,0.06,0.07

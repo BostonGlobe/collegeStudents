@@ -62,22 +62,22 @@
         .attr("width", width+margin.left+margin.right-30)
         .attr("height", height+margin.top+margin.bottom);
 
-    var axisYData = ['1996', '2015'];
+    var axisYData = ['1980', '2015'];
     // graphic code
     var scaleY= d3.scaleBand()
         .domain(axisData)
-        .range([0, height]);
+        .range([10, height]);
     var scaleX= d3.scaleBand()
         .domain(axisYData)
-        .range([0, width]);
+        .range([10, width]);
     var scaleAll= d3.scaleBand()
         .domain(axisData)
         .range([4*height/9, 5*height/9]);
 
 
     d3.queue()
-        .defer(d3.json,'assets/data96.json')
-        .defer(d3.json,'assets/data15.json')
+        .defer(d3.csv,'assets/1980collegeStudentPercent.csv')
+        .defer(d3.csv,'assets/2015collegeStudentPercent.csv')
         .await(dataloaded);
 
     drawAxis(); //drawAxis
@@ -95,7 +95,7 @@
             });
 
             circleData96.push({
-                'year': '1996',
+                'year': '1980',
                 'id': id,
                 'data': circle96
             });
@@ -114,7 +114,7 @@
         console.log(allCircleData);
         simulation= d3.forceSimulation(allCircleData);
         //drawChart(allCircleData );
-        var universityId=2;
+        var universityId=51; //average
 
 
 
@@ -124,7 +124,7 @@
         }).strength(1);
 
         d3.select('#plot').classed('fixed', true);
-        ForceLayout(allCircleData,0,forceY0, 35);
+        ForceLayout(allCircleData,0,forceY0, universityId);
 
 
         //ScrollyTelling
@@ -136,7 +136,7 @@
                 d3.select('.xAxis').selectAll('line').style('opacity', 0);
                 d3.selectAll(".stress").classed('highlight', false);
                 d3.select('#trigger0').select('.stress').classed('highlight', true);
-                universityId=35; //BU
+                universityId=51; //average
                 var forceY0 =d3.forceY().y(function (d) {
                     return scaleAll(d.data[universityId].attr.toUpperCase());
                 }).strength(1);
@@ -146,7 +146,7 @@
 
         var sceneB = new ScrollMagic.Scene({ triggerElement:'#trigger1', offset: -(document.documentElement.clientHeight/th), triggerHook: 0 }) // All races
             .on('start',function(){
-                universityId=0; //BU
+                universityId=6; //BU
                 d3.select('.categoryAxis').style('opacity', 1);
                 d3.select('.xAxis').selectAll('line').style('opacity', 0.2);
                 d3.selectAll(".stress").classed('highlight', false);
@@ -156,7 +156,7 @@
 
         var sceneC = new ScrollMagic.Scene({ triggerElement:'#trigger2', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
             .on('start',function(){
-                universityId=3; //Harvard
+                universityId=20; //Harvard
                 d3.selectAll(".stress").classed('highlight', false);
                 d3.select("#trigger2").select('.stress').classed('highlight', true);
                 ForceLayout(allCircleData,0,0, universityId);
@@ -167,7 +167,7 @@
             .on('start',function(){
                 d3.selectAll(".stress").classed('highlight', false);
                 d3.select("#trigger3").select('.stress').classed('highlight', true);
-                universityId=2;//NEU
+                universityId=35;//NEU
                 ForceLayout(allCircleData,0,0, universityId);
             });
         // var sceneD = new ScrollMagic.Scene({ triggerElement:'#trigger4', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
