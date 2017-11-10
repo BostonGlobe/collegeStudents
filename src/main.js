@@ -135,7 +135,6 @@
                 d3.select('.categoryAxis').style('opacity', 0);
                 d3.select('.xAxis').selectAll('line').style('opacity', 0);
                 d3.selectAll(".stress").classed('highlight', false);
-                d3.select('#trigger0').select('.stress').classed('highlight', true);
                 universityId=51; //average
                 var forceY0 =d3.forceY().y(function (d) {
                     return scaleAll(d.data[universityId].attr.toUpperCase());
