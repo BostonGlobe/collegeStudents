@@ -32,7 +32,7 @@
     ];
         
         
-    var th=4;
+    var th=3;
     // called once on page load
     var init = function() {
 
@@ -124,11 +124,17 @@
         }).strength(1);
 
         d3.select('#plot').classed('fixed', true);
+        d3.select('#collegeImg').style('opacity',.5);
         ForceLayout(allCircleData,0,forceY0, universityId);
 
 
         //ScrollyTelling
         var controller = new ScrollMagic.Controller();
+
+        // var scene = new ScrollMagic.Scene({ triggerElement:'#spacer1', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
+        //     .on('start',function(){
+        //         triggerStyle('#spacer1', 1, .5);
+        //     });
 
         var sceneA = new ScrollMagic.Scene({ triggerElement:'#trigger0', offset:-100, triggerHook: 0 }) // All races
             .on('start',function(){
@@ -146,108 +152,41 @@
         var sceneB = new ScrollMagic.Scene({ triggerElement:'#trigger1', offset: -(document.documentElement.clientHeight/th), triggerHook: 0 }) // All races
             .on('start',function(){
                 universityId=6; //BU
+                triggerStyle('#trigger1', 1, .5);
                 d3.select('.categoryAxis').style('opacity', 1);
                 d3.select('.xAxis').selectAll('line').style('opacity', 0.2);
-                d3.selectAll(".stress").classed('highlight', false);
-                d3.select('#trigger1').select('.stress').classed('highlight', true);
                 ForceLayout(allCircleData,0,0, universityId);
             });
 
         var sceneC = new ScrollMagic.Scene({ triggerElement:'#trigger2', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
             .on('start',function(){
+                triggerStyle('#trigger2', 1, .5);
                 universityId=20; //Harvard
-                d3.selectAll(".stress").classed('highlight', false);
-                d3.select("#trigger2").select('.stress').classed('highlight', true);
                 ForceLayout(allCircleData,0,0, universityId);
-                d3.select('#myDropdown').classed('show', false);
             });
 
         var sceneD = new ScrollMagic.Scene({ triggerElement:'#trigger3', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
-            .on('start',function(){
-                d3.selectAll(".stress").classed('highlight', false);
-                d3.select("#trigger3").select('.stress').classed('highlight', true);
+            .on('start',function(){;
+                triggerStyle('#trigger3', 1, .5);
                 universityId=35;//NEU
                 ForceLayout(allCircleData,0,0, universityId);
             });
-        // var sceneD = new ScrollMagic.Scene({ triggerElement:'#trigger4', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
-        //     .on('start',function(){
-        //         universityId=7; //MIT
-        //         ForceLayout(allCircleData, universityId);
-        //     });
-        controller.addScene([sceneA, sceneB, sceneC, sceneD]);
 
-
-        var btn = d3.select('#trigger3')
-            .selectAll('button')
-            .data([1]);
-        var btnEnter = btn
-            .enter()
-            .append('button')
-            .attr('class','dropbtn')
-            .text('Search another university');
-
-        var dropdownMenu = d3.select('#trigger3')
-            .selectAll('.dropdown-content')
-            .data([1]);
-        var dropdownDiv = dropdownMenu
-            .enter()
-            .append('div')
-            .attr('class', 'dropdown-content')
-            .attr('id','myDropdown')
-            .attr('overflow-y','scroll');
-
-
-        dropdownDiv
-            .append('input')
-            .attr('type','text')
-            .attr('placeholder','search')
-            .attr('id', 'myInput')
-            .on('keyup', filterFunction);
-
-        dropdownDiv.selectAll('.university')
-            .data(data96)
-            .enter()
-            .append("a")
-            .attr('class', 'university')
-            .attr('"xlink:href', function (d) {
-            return '#'+d.name
-        })
-            .text(function (d) {
-                return d.name;
-            })
-            .on('click', function (d) {
-                document.getElementById("myDropdown").classList.toggle("show");
-                d3.selectAll(".stress").classed('highlight', false);
-                universityId=data96.indexOf(d); //MIT
-                ForceLayout(allCircleData,0,0, universityId);
+        var sceneE = new ScrollMagic.Scene({ triggerElement:'#spacer2', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
+            .on('start',function(){
+                triggerStyle('#spacer2', 0, 1);
             });
+        var sceneF = new ScrollMagic.Scene({triggerElement: "#parallax1"})
+            .setTween("#parallax1 > div", {y: "0%", ease: Linear.easeNone});
 
-        d3.select('.dropbtn').on('mouseover', myFunction);
+        controller.addScene([sceneA, sceneB, sceneC, sceneD, sceneE, sceneF]);
 
-
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
+        function triggerStyle(triggerId, plotOpacity, imgOpacity) {
+            d3.select('#plot').transition().style('opacity', plotOpacity);
+            d3.selectAll(".stress").classed('highlight', false);
+            d3.select(triggerId).select('.stress').classed('highlight', true);
+            d3.select('#collegeImg').transition().style('opacity',imgOpacity);
         }
-
-        function filterFunction() {
-            var input, filter, a, i, div;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            div = document.getElementById("myDropdown");
-            a = div.getElementsByTagName("a");
-            for (i = 0; i < a.length; i++) {
-                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    a[i].style.display = "";
-                } else {
-                    a[i].style.display = "none";
-                }
-            }
-        }
-
-
-
-
-
 
 
         function createCircleData (university, id) {
@@ -333,7 +272,6 @@
     }
 
     function drawChart(data) {
-        console.log(data);
 
         var node = svg.selectAll('.node')
             .data([1]);

@@ -41,7 +41,7 @@ body{
 }
 
 #plot{
-	min-height: 600px;
+	height: 600px;
 	float: left;
 }
 .fixed{
@@ -59,15 +59,14 @@ body{
 	opacity: .3;
 }
 .textTrigger{
-	position: absolute;
 	padding: 20px;
-	height: 80%;
+	min-height: 240vh;
+	margin-bottom: 80vh;
 }
 .textTrigger .trigger{
-	height: 50%;
-	border:red;
+	height: 20%;
 	margin:auto;
-	margin-top: 5%;
+	margin-top: 10%;
 }
 .info{
 	width: 90%;
@@ -158,8 +157,18 @@ body{
 	line-height: 1.75em;
 }
 
-#trigger3{
-	height: 135%;
+#spacer1{
+	min-height: 30%;
+}
+#spacer2{
+	min-height: 120%;
+ }
+#collegeContent{
+	min-height: 1000px;
+	background-color: white;
+}
+.parallaxParent > div {
+	height: 100%;
 }
 
 @media only screen and (min-width: 720px) {
@@ -183,12 +192,16 @@ body{
 	min-height: 800px;
 	margin-top: 100px;
 }
-#collegeBgImg{
+#parallax1{
 	 width: 100vw;
 	 height: 100vh;
 	 position: fixed;
 	 z-index: -1;
  }
-#collegeBgImg img{
-	width: 100%;
+
+#parallax1 > div{
+	min-width: 100%;
+	min-height: 100%;
+	background-size:cover;
+
 }
