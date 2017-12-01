@@ -40,7 +40,7 @@ body{
 	color: white;
 }
 
-#plot{
+#yw-collegePlot{
 	height: 600px;
 	float: left;
 }
@@ -58,12 +58,12 @@ body{
 .categoryAxis .tick line{
 	opacity: .3;
 }
-.textTrigger{
+.stu-textIntro{
 	padding: 20px;
 	min-height: 240vh;
 	margin-bottom: 80vh;
 }
-.textTrigger .trigger{
+.stu-textIntro .trigger{
 	height: 20%;
 	margin:auto;
 	margin-top: 10%;
@@ -172,7 +172,7 @@ body{
 }
 
 @media only screen and (min-width: 720px) {
-	.textTrigger{
+	.stu-textIntro{
 		left: 55%;
 	}
 }

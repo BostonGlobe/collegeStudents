@@ -50,14 +50,14 @@
 
 // Set the dimensions and margins of the diagram
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
-        width =  (document.getElementById('plot').clientWidth)  - margin.left - margin.right,
-        height = document.getElementById('plot').clientHeight - margin.top - margin.bottom;
+        width =  (document.getElementById('yw-collegePlot').clientWidth)  - margin.left - margin.right,
+        height = document.getElementById('yw-collegePlot').clientHeight - margin.top - margin.bottom;
     var simulation;
     var dataCircles96=[];
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-    var svg = d3.select("#plot").append("svg")
+    var svg = d3.select("#yw-collegePlot").append("svg")
         .attr('transform','translate(0,0)')
         .attr("width", width+margin.left+margin.right-30)
         .attr("height", height+margin.top+margin.bottom);
@@ -123,7 +123,7 @@
             return scaleAll(d.data[35].attr.toUpperCase());
         }).strength(1);
 
-        d3.select('#plot').classed('fixed', true);
+        d3.select('#yw-collegePlot').classed('fixed', true);
         d3.select('#collegeImg').style('opacity',.5);
         ForceLayout(allCircleData,0,forceY0, universityId);
 
@@ -178,7 +178,7 @@
         controller.addScene([sceneB, sceneC, sceneD, sceneE]);
 
         function triggerStyle(triggerId, plotOpacity, imgOpacity) {
-            d3.select('#plot').transition().style('opacity', plotOpacity);
+            d3.select('#yw-collegePlot').transition().style('opacity', plotOpacity);
             d3.selectAll(".stress").classed('highlight', false);
             d3.select(triggerId).select('.stress').classed('highlight', true);
             d3.select('#collegeImg').transition().style('opacity',imgOpacity);
