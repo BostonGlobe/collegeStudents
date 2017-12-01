@@ -157,6 +157,8 @@
         var sceneC = new ScrollMagic.Scene({ triggerElement:'#trigger2', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
             .on('start',function(){
                 triggerStyle('#trigger2', 1, .5);
+                d3.select('.categoryAxis').style('opacity', 1);
+                d3.select('.xAxis').selectAll('line').style('opacity', 0.2);
                 universityId=20; //Harvard
                 ForceLayout(allCircleData,0,0, universityId);
             });
@@ -164,6 +166,8 @@
         var sceneD = new ScrollMagic.Scene({ triggerElement:'#trigger3', offset: -(document.documentElement.clientHeight/th), triggerHook: 0, reverse: true}) // All races - charter schools
             .on('start',function(){;
                 triggerStyle('#trigger3', 1, .5);
+                d3.select('.categoryAxis').style('opacity', 1);
+                d3.select('.xAxis').selectAll('line').style('opacity', 0.2);
                 universityId=35;//NEU
                 ForceLayout(allCircleData,0,0, universityId);
             });
@@ -175,7 +179,7 @@
         // var sceneF = new ScrollMagic.Scene({triggerElement: "#parallax1"})
         //     .setTween("#parallax1 > div", {y: "0%"});
 
-        controller.addScene([sceneB, sceneC, sceneD, sceneE]);
+        controller.addScene([sceneA,sceneB, sceneC, sceneD, sceneE]);
 
         function triggerStyle(triggerId, plotOpacity, imgOpacity) {
             d3.select('#yw-collegePlot').transition().style('opacity', plotOpacity);
