@@ -141,12 +141,8 @@
                 d3.select('.categoryAxis').style('opacity', 0);
                 d3.select('.xAxis').selectAll('line').style('opacity', 0);
                 d3.selectAll(".stress").classed('highlight', false);
-                universityId=51; //average
-                var forceY0 =d3.forceY().y(function (d) {
-                    return scaleAll(d.data[universityId].attr.toUpperCase());
-                }).strength(1);
-
-                ForceLayout(allCircleData,0,forceY0, universityId);
+                universityId=6; //average
+                ForceLayout(allCircleData,0,0, universityId);
             });
 
         var sceneB = new ScrollMagic.Scene({ triggerElement:'#trigger1', offset: -(document.documentElement.clientHeight/th), triggerHook: 0 }) // All races
@@ -176,10 +172,10 @@
             .on('start',function(){
                 triggerStyle('#spacer2', 0, 1);
             });
-        var sceneF = new ScrollMagic.Scene({triggerElement: "#parallax1"})
-            .setTween("#parallax1 > div", {y: "0%", ease: Linear.easeNone});
+        // var sceneF = new ScrollMagic.Scene({triggerElement: "#parallax1"})
+        //     .setTween("#parallax1 > div", {y: "0%"});
 
-        controller.addScene([sceneA, sceneB, sceneC, sceneD, sceneE, sceneF]);
+        controller.addScene([sceneB, sceneC, sceneD, sceneE]);
 
         function triggerStyle(triggerId, plotOpacity, imgOpacity) {
             d3.select('#plot').transition().style('opacity', plotOpacity);
